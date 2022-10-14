@@ -6,18 +6,23 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
+    Ball ballScript;
+
     public Text CounterText;
 
     private int Count = 0;
 
-    private void Start()
+    void Start()
     {
+        ballScript = FindObjectOfType<Ball>();
         Count = 0;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         Count += 1;
         CounterText.text = "Count : " + Count;
+        Destroy(other);
+        ballScript.BallInstantiater();
     }
 }
